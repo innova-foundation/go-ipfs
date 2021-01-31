@@ -14,6 +14,8 @@ import (
 
 const ethTLD = "eth"
 const linkTLD = "link"
+const dTLD = "d"
+const denariiTLD = "denarii"
 
 type LookupTXTFunc func(name string) (txt []string, err error)
 
@@ -69,6 +71,18 @@ func (r *DNSResolver) resolveOnceAsync(ctx context.Context, name string, options
 	if strings.HasSuffix(fqdn, "."+ethTLD+".") {
 		// This is an ENS name.  As we're resolving via an arbitrary DNS server
 		// that may not know about .eth we need to add our link domain suffix.
+		fqdn += linkTLD + "."
+	}
+	
+	if strings.HasSuffix(fqdn, "."+dTLD+".") {
+		// This is an Denarius DNS name.  As we're resolving via an arbitrary DNS server
+		// that may not know about .d we need to add our link domain suffix.
+		fqdn += linkTLD + "."
+	}
+	
+	if strings.HasSuffix(fqdn, "."+denariiTLD+".") {
+		// This is an Denarius DNS name.  As we're resolving via an arbitrary DNS server
+		// that may not know about .denarii we need to add our link domain suffix.
 		fqdn += linkTLD + "."
 	}
 
