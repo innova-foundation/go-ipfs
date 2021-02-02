@@ -735,7 +735,8 @@ Use-cases:
   - extra time for dht spin-up ([ipfs/interface-go-ipfs-core#61](https://github.com/ipfs/interface-go-ipfs-core/pull/61))
   - feat: make the CoreAPI expose a streaming pin interface ([ipfs/interface-go-ipfs-core#49](https://github.com/ipfs/interface-go-ipfs-core/pull/49))
   - test: fail early on err to avoid an unrelated panic ([ipfs/interface-go-ipfs-core#57](https://github.com/ipfs/interface-go-ipfs-core/pull/57))
-- github.com/jbenet/go-is-domain (v1.0.3 -> v1.0.5):
+- github.com/carsenk/go-is-domain (v1.0.3 -> v1.0.5):
+  - Add Denarius domains to extended TLDs. ([carsenk/go-is-domains])
   - Add OpenNIC domains to extended TLDs. ([jbenet/go-is-domain#15](https://github.com/jbenet/go-is-domain/pull/15))
   - feat: add .crypto and .zil from UnstoppableDomains ([jbenet/go-is-domain#17](https://github.com/jbenet/go-is-domain/pull/17))
   - chore: update IANA TLDs to version 2020051300 ([jbenet/go-is-domain#18](https://github.com/jbenet/go-is-domain/pull/18))
