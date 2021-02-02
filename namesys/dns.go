@@ -9,7 +9,7 @@ import (
 
 	path "github.com/ipfs/go-path"
 	opts "github.com/ipfs/interface-go-ipfs-core/options/namesys"
-	isd "github.com/jbenet/go-is-domain"
+	isd "github.com/carsenk/go-is-domain"
 )
 
 const ethTLD = "eth"
@@ -35,7 +35,7 @@ func NewDNSResolver(dnsaddress string) *DNSResolver {
 			PreferGo: true,
 			Dial: func(ctx context.Context, network, address string) (net.Conn, error) {
 				var d net.Dialer
-				return d.DialContext(ctx, "udp", "107.172.214.168")
+				return d.DialContext(ctx, "udp", dnsaddress)
 			},
 		}).LookupTXT
 	} else {
@@ -43,14 +43,14 @@ func NewDNSResolver(dnsaddress string) *DNSResolver {
 			PreferGo: true,
 			Dial: func(ctx context.Context, network, address string) (net.Conn, error) {
 				var d net.Dialer
-				return d.DialContext(ctx, "udp", "107.172.214.168")
+				return d.DialContext(ctx, "udp", dnsaddress)
 			},
 		}).LookupTXT
 	}
 	return &DNSResolver{lookupTXT: func(name string) (txt []string, err error) {
 		return lookupTXTDNS(context.Background(), name)
 	},
-		DNSAddress: "107.172.214.168",
+		DNSAddress: dnsaddress,
 	}
 }
 
