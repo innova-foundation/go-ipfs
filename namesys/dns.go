@@ -22,36 +22,14 @@ type LookupTXTFunc func(name string) (txt []string, err error)
 // DNSResolver implements a Resolver on DNS domains
 type DNSResolver struct {
 	lookupTXT  LookupTXTFunc
-	DNSAddress string
+	//DNSAddress string
 	// TODO: maybe some sort of caching?
 	// cache would need a timeout
 }
 
 // NewDNSResolver constructs a name resolver using DNS TXT records.
-func NewDNSResolver(dnsaddress string) *DNSResolver {
-	var lookupTXTDNS func(ctx context.Context, name string) ([]string, error)
-	if dnsaddress == "" {
-		lookupTXTDNS = (&net.Resolver{
-			PreferGo: true,
-			Dial: func(ctx context.Context, network, address string) (net.Conn, error) {
-				var d net.Dialer
-				return d.DialContext(ctx, "udp", dnsaddress)
-			},
-		}).LookupTXT
-	} else {
-		lookupTXTDNS = (&net.Resolver{
-			PreferGo: true,
-			Dial: func(ctx context.Context, network, address string) (net.Conn, error) {
-				var d net.Dialer
-				return d.DialContext(ctx, "udp", dnsaddress)
-			},
-		}).LookupTXT
-	}
-	return &DNSResolver{lookupTXT: func(name string) (txt []string, err error) {
-		return lookupTXTDNS(context.Background(), name)
-	},
-		DNSAddress: dnsaddress,
-	}
+func NewDNSResolver() *DNSResolver {
+	return &DNSResolver{lookupTXT: net.LookupTXT}
 }
 
 // Resolve implements Resolver.
@@ -97,17 +75,17 @@ func (r *DNSResolver) resolveOnceAsync(ctx context.Context, name string, options
 		fqdn += linkTLD + "."
 	}
 	
-	if strings.HasSuffix(fqdn, "."+dTLD+".") {
-		// This is an Denarius DNS name.  As we're resolving via an arbitrary DNS server
-		// that may not know about .d we need to add our link domain suffix.
-		fqdn += linkTLD + "."
-	}
+// 	if strings.HasSuffix(fqdn, "."+dTLD+".") {
+// 		// This is an Denarius DNS name.  As we're resolving via an arbitrary DNS server
+// 		// that may not know about .d we need to add our link domain suffix.
+// 		fqdn += linkTLD + "."
+// 	}
 	
-	if strings.HasSuffix(fqdn, "."+denariiTLD+".") {
-		// This is an Denarius DNS name.  As we're resolving via an arbitrary DNS server
-		// that may not know about .denarii we need to add our link domain suffix.
-		fqdn += linkTLD + "."
-	}
+// 	if strings.HasSuffix(fqdn, "."+denariiTLD+".") {
+// 		// This is an Denarius DNS name.  As we're resolving via an arbitrary DNS server
+// 		// that may not know about .denarii we need to add our link domain suffix.
+// 		fqdn += linkTLD + "."
+// 	}
 
 	rootChan := make(chan lookupRes, 1)
 	go workDomain(r, fqdn, rootChan)
