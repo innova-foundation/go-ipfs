@@ -60,7 +60,7 @@ func NewNameSystem(r routing.ValueStore, ds ds.Datastore, cachesize int) NameSys
 	}
 
 	return &mpns{
-		dnsResolver:      NewDNSResolver("107.172.214.168"),
+		dnsResolver:      NewDNSResolver(),
 		proquintResolver: new(ProquintResolver),
 		ipnsResolver:     NewIpnsResolver(r),
 		ipnsPublisher:    NewIpnsPublisher(r, ds),
