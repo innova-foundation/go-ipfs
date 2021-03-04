@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	isd "github.com/carsenk/go-is-domain"
+	isd "github.com/innova-foundation/go-is-domain"
 	cid "github.com/ipfs/go-cid"
 	core "github.com/ipfs/go-ipfs/core"
 	coreapi "github.com/ipfs/go-ipfs/core/coreapi"

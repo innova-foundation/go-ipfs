@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	isd "github.com/carsenk/go-is-domain"
+	isd "github.com/innova-foundation/go-is-domain"
 	lru "github.com/hashicorp/golang-lru"
 	cid "github.com/ipfs/go-cid"
 	ds "github.com/ipfs/go-datastore"

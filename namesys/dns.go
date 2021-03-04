@@ -9,13 +9,15 @@ import (
 
 	path "github.com/ipfs/go-path"
 	opts "github.com/ipfs/interface-go-ipfs-core/options/namesys"
-	isd "github.com/carsenk/go-is-domain"
+	isd "github.com/innova-foundation/go-is-domain"
 )
 
 const ethTLD = "eth"
 const linkTLD = "link"
 const dTLD = "d"
 const denariiTLD = "denarii"
+const iTLD = "i"
+const innovaiiTLD = "innovai"
 
 type LookupTXTFunc func(name string) (txt []string, err error)
 
@@ -74,18 +76,30 @@ func (r *DNSResolver) resolveOnceAsync(ctx context.Context, name string, options
 		// that may not know about .eth we need to add our link domain suffix.
 		fqdn += linkTLD + "."
 	}
-	
+
 // 	if strings.HasSuffix(fqdn, "."+dTLD+".") {
 // 		// This is an Denarius DNS name.  As we're resolving via an arbitrary DNS server
 // 		// that may not know about .d we need to add our link domain suffix.
 // 		fqdn += linkTLD + "."
 // 	}
-	
+
 // 	if strings.HasSuffix(fqdn, "."+denariiTLD+".") {
 // 		// This is an Denarius DNS name.  As we're resolving via an arbitrary DNS server
 // 		// that may not know about .denarii we need to add our link domain suffix.
 // 		fqdn += linkTLD + "."
 // 	}
+
+/* if strings.HasSuffix(fqdn, "."+iTLD+".") {
+		// This is an Innova DNS name.  As we're resolving via an arbitrary DNS server
+		// that may not know about .d we need to add our link domain suffix.
+		fqdn += linkTLD + "."
+	}
+
+	if strings.HasSuffix(fqdn, "."+innovaiTLD+".") {
+		// This is an Innova DNS name.  As we're resolving via an arbitrary DNS server
+		// that may not know about .denarii we need to add our link domain suffix.
+		fqdn += linkTLD + "."
+	} */
 
 	rootChan := make(chan lookupRes, 1)
 	go workDomain(r, fqdn, rootChan)
