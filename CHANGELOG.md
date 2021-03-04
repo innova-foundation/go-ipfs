@@ -735,12 +735,11 @@ Use-cases:
   - extra time for dht spin-up ([ipfs/interface-go-ipfs-core#61](https://github.com/ipfs/interface-go-ipfs-core/pull/61))
   - feat: make the CoreAPI expose a streaming pin interface ([ipfs/interface-go-ipfs-core#49](https://github.com/ipfs/interface-go-ipfs-core/pull/49))
   - test: fail early on err to avoid an unrelated panic ([ipfs/interface-go-ipfs-core#57](https://github.com/ipfs/interface-go-ipfs-core/pull/57))
-- github.com/carsenk/go-is-domain (v1.0.3 -> v1.0.5):
+- carsenk | go-is-domain (v1.0.6):
   - Add Denarius domains to extended TLDs. ([carsenk/go-is-domains])
+- CircuitBreaker | go-is-domain (v1.0.7):
+  - Add Innova domains to extended TLDs. ([innova-foundation/go-is-domains])  #Credits to carsenk for initial implementation.
   - Add OpenNIC domains to extended TLDs. ([jbenet/go-is-domain#15](https://github.com/jbenet/go-is-domain/pull/15))
-  - github.com/innova-foundation/go-is-domain (v1.0.3 -> v1.0.5):
-    - Add Innova domains to extended TLDs. ([innova-foundation/go-is-domains]) #Credits to carsenk for initial implementation.
-    - Add OpenNIC domains to extended TLDs. ([jbenet/go-is-domain#15](https://github.com/jbenet/go-is-domain/pull/15))
   - feat: add .crypto and .zil from UnstoppableDomains ([jbenet/go-is-domain#17](https://github.com/jbenet/go-is-domain/pull/17))
   - chore: update IANA TLDs to version 2020051300 ([jbenet/go-is-domain#18](https://github.com/jbenet/go-is-domain/pull/18))
 - github.com/libp2p/go-addr-util (v0.0.1 -> v0.0.2):
